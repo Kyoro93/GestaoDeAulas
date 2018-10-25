@@ -14,7 +14,9 @@ namespace GestaoDeAulas
     {
         public Principal()
         {
+
             InitializeComponent();
+            
         }
 
         private void gerenciamentoToolStripMenuItem_Click(object sender, EventArgs e)
