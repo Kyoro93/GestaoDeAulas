@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GestaoDeAulas.Controle;
+using GestaoDeAulas.Visao;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +34,17 @@ namespace GestaoDeAulas
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ConexaoMySQL conn = new ConexaoMySQL();
+            conn.Insert();
+        }
+
+        private void professoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new GerenciaProfessores().Show();
         }
     }
 }

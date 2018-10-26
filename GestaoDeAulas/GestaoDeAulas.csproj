@@ -60,15 +60,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controle\ConexaoMySQL.cs" />
-    <Compile Include="Principal.cs">
+    <Compile Include="Visao\GerenciaProfessores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Principal.Designer.cs">
+    <Compile Include="Visao\GerenciaProfessores.Designer.cs">
+      <DependentUpon>GerenciaProfessores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\InsereProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\InsereProfessor.Designer.cs">
+      <DependentUpon>InsereProfessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Principal.resx">
+    <EmbeddedResource Include="Visao\GerenciaProfessores.resx">
+      <DependentUpon>GerenciaProfessores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\InsereProfessor.resx">
+      <DependentUpon>InsereProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -96,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modelo\" />
-    <Folder Include="Visao\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
