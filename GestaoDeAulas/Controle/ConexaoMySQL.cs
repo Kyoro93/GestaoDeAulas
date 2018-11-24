@@ -350,5 +350,54 @@ namespace GestaoDeAulas.Controle
 
             return false;
         }
+
+        public List<string> SelectAulas()
+        {
+            string query = "SELECT * FROM AULA_AGENDADA";
+
+            //Create a list to store the result
+            List<string> list = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    // TODO: Arrumar as colunas para retornar tudo da aula
+                    list.Add(dataReader["NOME"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public void DeleteHorarios(string horario)
+        {
+            string query = "DELETE FROM HORARIO_AULA WHERE ID_HORARIO = " + horario + "";
+
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
+            }
+        }
     }
 }

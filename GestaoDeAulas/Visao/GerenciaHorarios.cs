@@ -11,16 +11,17 @@ using System.Windows.Forms;
 
 namespace GestaoDeAulas.Visao
 {
-    public sealed partial class GerenciaProfessores : Form
+    public sealed partial class GerenciaHorarios : Form
     {
-        private static readonly GerenciaProfessores instance = new GerenciaProfessores();
-        
-        private GerenciaProfessores()
+        private static readonly GerenciaHorarios instance = new GerenciaHorarios();
+
+        private GerenciaHorarios()
         {
             InitializeComponent();
+            refreshDataGridView();
         }
 
-        public static GerenciaProfessores Instance
+        public static GerenciaHorarios Instance
         {
             get
             {
@@ -33,10 +34,10 @@ namespace GestaoDeAulas.Visao
             ConexaoMySQL conn = new ConexaoMySQL();
             List<string> professores = conn.SelectProfessores();
 
-            dgvProfessores.Rows.Clear();
+            dgvHorarios.Rows.Clear();
             foreach (string s in professores)
             {
-                dgvProfessores.Rows.Add(s);
+                dgvHorarios.Rows.Add(s);
             }
             conn = null;
         }
@@ -48,22 +49,22 @@ namespace GestaoDeAulas.Visao
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvProfessores.CurrentCell.RowIndex;
-            string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
+            int intIndex = dgvHorarios.CurrentCell.RowIndex;
+            string strHorario = dgvHorarios.SelectedCells[0].Value.ToString();
             ConexaoMySQL conn = new ConexaoMySQL();
-            conn.DeleteProfessores(strProfessor);
+            conn.DeleteHorarios(strHorario);
             conn = null;
             refreshDataGridView();
-            MessageBox.Show("O professor "+strProfessor + " foi removido com sucesso.");
+            MessageBox.Show("O horario " + strHorario  + " foi removido com sucesso.");
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            new InsereProfessor().ShowDialog();
+            new InsereHorarios().ShowDialog();
             refreshDataGridView();
         }
 
-        private void GerenciaProfessores_Enter(object sender, EventArgs e)
+        private void GerenciaHorarios_Enter(object sender, EventArgs e)
         {
             refreshDataGridView();
         }

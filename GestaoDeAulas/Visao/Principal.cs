@@ -31,9 +31,22 @@ namespace GestaoDeAulas
 
         }
 
+        private void refreshDataGridView()
+        {
+            ConexaoMySQL conn = new ConexaoMySQL();
+            List<string> aulas = conn.SelectAulas();
+
+            dgvAulasAgendadas.Rows.Clear();
+            foreach (string s in aulas)
+            {
+                dgvAulasAgendadas.Rows.Add();
+            }
+            conn = null;
+        }
+
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            
+        
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,7 +57,20 @@ namespace GestaoDeAulas
 
         private void professoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new GerenciaProfessores().Show();
+            GerenciaProfessores _gerenciaProfessores1 = GerenciaProfessores.Instance;
+            _gerenciaProfessores1.ShowDialog();
+        }
+
+        private void horáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GerenciaHorarios _gerenciaHorarios1 = GerenciaHorarios.Instance;
+            _gerenciaHorarios1.ShowDialog();
+        }
+
+        private void turmasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GerenciaTurmas _gerenciaTurmas1 = GerenciaTurmas.Instance;
+            _gerenciaTurmas1.ShowDialog();
         }
     }
 }

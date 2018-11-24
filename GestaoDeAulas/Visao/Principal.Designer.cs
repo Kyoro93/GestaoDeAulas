@@ -32,11 +32,8 @@
             this.gerenciamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.professoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aulasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blocosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turmasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelAulas = new System.Windows.Forms.Panel();
@@ -63,8 +60,6 @@
             this.gerenciamentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.professoresToolStripMenuItem,
             this.horáriosToolStripMenuItem,
-            this.aulasToolStripMenuItem,
-            this.blocosToolStripMenuItem,
             this.turmasToolStripMenuItem});
             this.gerenciamentoToolStripMenuItem.Name = "gerenciamentoToolStripMenuItem";
             this.gerenciamentoToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
@@ -83,49 +78,28 @@
             this.horáriosToolStripMenuItem.Name = "horáriosToolStripMenuItem";
             this.horáriosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.horáriosToolStripMenuItem.Text = "Horários";
-            // 
-            // aulasToolStripMenuItem
-            // 
-            this.aulasToolStripMenuItem.Name = "aulasToolStripMenuItem";
-            this.aulasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aulasToolStripMenuItem.Text = "Aulas";
-            // 
-            // blocosToolStripMenuItem
-            // 
-            this.blocosToolStripMenuItem.Name = "blocosToolStripMenuItem";
-            this.blocosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.blocosToolStripMenuItem.Text = "Blocos";
+            this.horáriosToolStripMenuItem.Click += new System.EventHandler(this.horáriosToolStripMenuItem_Click);
             // 
             // turmasToolStripMenuItem
             // 
             this.turmasToolStripMenuItem.Name = "turmasToolStripMenuItem";
             this.turmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.turmasToolStripMenuItem.Text = "Turmas";
+            this.turmasToolStripMenuItem.Click += new System.EventHandler(this.turmasToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panelAulas);
             this.panel1.Controls.Add(this.monthCalendar1);
             this.panel1.Location = new System.Drawing.Point(13, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(775, 474);
+            this.panel1.Size = new System.Drawing.Size(775, 571);
             this.panel1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(13, 171);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -153,7 +127,7 @@
             this.panelAulas.Controls.Add(this.dgvAulasAgendadas);
             this.panelAulas.Location = new System.Drawing.Point(3, 240);
             this.panelAulas.Name = "panelAulas";
-            this.panelAulas.Size = new System.Drawing.Size(769, 231);
+            this.panelAulas.Size = new System.Drawing.Size(769, 328);
             this.panelAulas.TabIndex = 2;
             // 
             // dgvAulasAgendadas
@@ -165,7 +139,7 @@
             this.dgvAulasAgendadas.Location = new System.Drawing.Point(0, 0);
             this.dgvAulasAgendadas.Name = "dgvAulasAgendadas";
             this.dgvAulasAgendadas.ReadOnly = true;
-            this.dgvAulasAgendadas.Size = new System.Drawing.Size(769, 231);
+            this.dgvAulasAgendadas.Size = new System.Drawing.Size(769, 328);
             this.dgvAulasAgendadas.TabIndex = 1;
             this.dgvAulasAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
@@ -181,9 +155,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 514);
+            this.ClientSize = new System.Drawing.Size(800, 611);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
             this.Text = "Sistema de Gestão de Aulas - Educativa";
@@ -204,8 +179,6 @@
         private System.Windows.Forms.ToolStripMenuItem gerenciamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem professoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem horáriosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aulasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem blocosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem turmasToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelAulas;
@@ -213,7 +186,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
     }
 }
 

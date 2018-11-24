@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controle\ConexaoMySQL.cs" />
+    <Compile Include="Visao\GerenciaHorarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\GerenciaHorarios.Designer.cs">
+      <DependentUpon>GerenciaHorarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\GerenciaProfessores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Visao\GerenciaHorarios.resx">
+      <DependentUpon>GerenciaHorarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\GerenciaProfessores.resx">
       <DependentUpon>GerenciaProfessores.cs</DependentUpon>
     </EmbeddedResource>

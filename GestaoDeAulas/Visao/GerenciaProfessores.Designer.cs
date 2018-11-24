@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnRemover = new System.Windows.Forms.Button();
+            this.btnAdicionarProfessor = new System.Windows.Forms.Button();
+            this.btnRemoverProfessor = new System.Windows.Forms.Button();
+            this.btnAlterarProfessor = new System.Windows.Forms.Button();
             this.dgvProfessores = new System.Windows.Forms.DataGridView();
             this.NOME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -37,25 +38,34 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnNovo
+            // btnAdicionarProfessor
             // 
-            this.btnNovo.Location = new System.Drawing.Point(76, 41);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 0;
-            this.btnNovo.Text = "Adicionar";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            this.btnAdicionarProfessor.Location = new System.Drawing.Point(102, 35);
+            this.btnAdicionarProfessor.Name = "btnAdicionarProfessor";
+            this.btnAdicionarProfessor.Size = new System.Drawing.Size(98, 37);
+            this.btnAdicionarProfessor.TabIndex = 0;
+            this.btnAdicionarProfessor.Text = "Adicionar";
+            this.btnAdicionarProfessor.UseVisualStyleBackColor = true;
+            this.btnAdicionarProfessor.Click += new System.EventHandler(this.btnNovo_Click);
             // 
-            // btnRemover
+            // btnRemoverProfessor
             // 
-            this.btnRemover.Location = new System.Drawing.Point(288, 41);
-            this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(75, 23);
-            this.btnRemover.TabIndex = 1;
-            this.btnRemover.Text = "Remover";
-            this.btnRemover.UseVisualStyleBackColor = true;
-            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            this.btnRemoverProfessor.Location = new System.Drawing.Point(310, 35);
+            this.btnRemoverProfessor.Name = "btnRemoverProfessor";
+            this.btnRemoverProfessor.Size = new System.Drawing.Size(98, 37);
+            this.btnRemoverProfessor.TabIndex = 1;
+            this.btnRemoverProfessor.Text = "Remover";
+            this.btnRemoverProfessor.UseVisualStyleBackColor = true;
+            this.btnRemoverProfessor.Click += new System.EventHandler(this.btnRemover_Click);
+            // 
+            // btnAlterarProfessor
+            // 
+            this.btnAlterarProfessor.Location = new System.Drawing.Point(206, 35);
+            this.btnAlterarProfessor.Name = "btnAlterarProfessor";
+            this.btnAlterarProfessor.Size = new System.Drawing.Size(98, 37);
+            this.btnAlterarProfessor.TabIndex = 4;
+            this.btnAlterarProfessor.Text = "Alterar";
+            this.btnAlterarProfessor.UseVisualStyleBackColor = true;
             // 
             // dgvProfessores
             // 
@@ -68,7 +78,7 @@
             this.dgvProfessores.Location = new System.Drawing.Point(0, 0);
             this.dgvProfessores.Name = "dgvProfessores";
             this.dgvProfessores.ReadOnly = true;
-            this.dgvProfessores.Size = new System.Drawing.Size(776, 330);
+            this.dgvProfessores.Size = new System.Drawing.Size(499, 332);
             this.dgvProfessores.TabIndex = 2;
             this.dgvProfessores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -83,17 +93,19 @@
             this.panel1.Controls.Add(this.dgvProfessores);
             this.panel1.Location = new System.Drawing.Point(12, 108);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 330);
+            this.panel1.Size = new System.Drawing.Size(499, 332);
             this.panel1.TabIndex = 3;
             // 
             // GerenciaProfessores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(521, 454);
+            this.Controls.Add(this.btnAlterarProfessor);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnRemover);
-            this.Controls.Add(this.btnNovo);
+            this.Controls.Add(this.btnRemoverProfessor);
+            this.Controls.Add(this.btnAdicionarProfessor);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GerenciaProfessores";
             this.Text = "Gerenciamento de Professores";
             this.Load += new System.EventHandler(this.GerenciaProfessores_Enter);
@@ -107,10 +119,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnRemover;
+        private System.Windows.Forms.Button btnAdicionarProfessor;
+        private System.Windows.Forms.Button btnRemoverProfessor;
+        private System.Windows.Forms.Button btnAlterarProfessor;
         private System.Windows.Forms.DataGridView dgvProfessores;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn NOME;
+        private System.Windows.Forms.Panel panel1;
     }
 }
