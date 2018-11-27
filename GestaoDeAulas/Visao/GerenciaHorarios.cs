@@ -32,19 +32,16 @@ namespace GestaoDeAulas.Visao
         private void refreshDataGridView()
         {
             ConexaoMySQL conn = new ConexaoMySQL();
-            List<string> professores = conn.SelectProfessores();
+            List<string> horarios = conn.SelectHorarios();
 
             dgvHorarios.Rows.Clear();
-            foreach (string s in professores)
+            foreach (string s in horarios)
             {
-                dgvHorarios.Rows.Add(s);
+                String strID = s.Split(';')[0];
+                String strHora = s.Split(';')[1];
+                dgvHorarios.Rows.Add(strID, strHora);
             }
             conn = null;
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -56,12 +53,6 @@ namespace GestaoDeAulas.Visao
             conn = null;
             refreshDataGridView();
             MessageBox.Show("O horario " + strHorario  + " foi removido com sucesso.");
-        }
-
-        private void btnNovo_Click(object sender, EventArgs e)
-        {
-            new InsereHorarios().ShowDialog();
-            refreshDataGridView();
         }
 
         private void GerenciaHorarios_Enter(object sender, EventArgs e)

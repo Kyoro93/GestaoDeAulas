@@ -278,6 +278,13 @@ namespace GestaoDeAulas.Controle
             }
         }
 
+        /// <summary>
+        /// PROFESSORES
+        /// </summary>
+        /// <param name="professor"></param>
+        /// 
+
+
         public List<string> SelectProfessores()
         {
             string query = "SELECT * FROM PROFESSOR";
@@ -351,6 +358,12 @@ namespace GestaoDeAulas.Controle
             return false;
         }
 
+        /// <summary>
+        /// AULAS
+        /// </summary>
+        /// <param name="aula"></param>
+        /// 
+
         public List<string> SelectAulas()
         {
             string query = "SELECT * FROM AULA_AGENDADA";
@@ -371,6 +384,48 @@ namespace GestaoDeAulas.Controle
                 {
                     // TODO: Arrumar as colunas para retornar tudo da aula
                     list.Add(dataReader["NOME"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// HORARIOS
+        /// </summary>
+        /// <param name="horario"></param>
+        /// 
+
+        public List<string> SelectHorarios()
+        {
+            string query = "SELECT * FROM HORARIO_AULA";
+
+            //Create a list to store the result
+            List<string> list = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list.Add(dataReader["ID_HORARIO"] + ";" + dataReader["HORARIO"]);
                 }
 
                 //close Data Reader
