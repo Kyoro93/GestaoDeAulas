@@ -50,11 +50,16 @@ namespace GestaoDeAulas.Visao
         {
             int intIndex = dgvProfessores.CurrentCell.RowIndex;
             string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
-            ConexaoMySQL conn = new ConexaoMySQL();
-            conn.DeleteProfessores(strProfessor);
-            conn = null;
-            refreshDataGridView();
-            MessageBox.Show("O professor "+strProfessor + " foi removido com sucesso.");
+            if (MessageBox.Show("Deseja realmente remover o professor \""+ strProfessor +"\"?", "Confirme para continuar",
+    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+    MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                ConexaoMySQL conn = new ConexaoMySQL();
+                conn.DeleteProfessor(strProfessor);
+                conn = null;
+                MessageBox.Show("O professor " + strProfessor + " foi removido com sucesso.");
+                refreshDataGridView();
+            }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -65,6 +70,14 @@ namespace GestaoDeAulas.Visao
 
         private void GerenciaProfessores_Enter(object sender, EventArgs e)
         {
+            refreshDataGridView();
+        }
+
+        private void btnAlterarProfessor_Click(object sender, EventArgs e)
+        {
+            int intIndex = dgvProfessores.CurrentCell.RowIndex;
+            string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
+            new AlteraProfessor(strProfessor).ShowDialog();
             refreshDataGridView();
         }
     }

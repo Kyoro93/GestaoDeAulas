@@ -11,39 +11,39 @@ using System.Windows.Forms;
 
 namespace GestaoDeAulas.Visao
 {
-    public partial class InsereProfessor : Form
+    public partial class AlteraHorario : Form
     {
-        public InsereProfessor()
+        string strAntigoHorario = "";
+
+        public AlteraHorario(string strAntigoHorario)
         {
+            this.strAntigoHorario = strAntigoHorario;
             InitializeComponent();
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void btnAlterar_Click(object sender, EventArgs e)
         {
-            string strNome = txbNome.Text;
+            string strNovoHorario = txbNovoHorario.Text;
+
             try
             {
                 ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.InsertProfessor(strNome);
+                bool result = conn.UpdateHorario(strNovoHorario, this.strAntigoHorario);
 
                 if (!result)
                 {
-                    MessageBox.Show("Erro ao inserir.");
+                    MessageBox.Show("Erro ao atualizar.");
                 }
                 else
                 {
-                    MessageBox.Show("Inserido com sucesso.");
+                    MessageBox.Show("Alterado com sucesso.");
                     this.Close();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
-        }
-
-        private void InsereProfessor_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

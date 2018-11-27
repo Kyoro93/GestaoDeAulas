@@ -66,6 +66,7 @@
             this.btnAlterarProfessor.TabIndex = 4;
             this.btnAlterarProfessor.Text = "Alterar";
             this.btnAlterarProfessor.UseVisualStyleBackColor = true;
+            this.btnAlterarProfessor.Click += new System.EventHandler(this.btnAlterarProfessor_Click);
             // 
             // dgvProfessores
             // 

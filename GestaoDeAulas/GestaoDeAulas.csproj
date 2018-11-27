@@ -60,6 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controle\ConexaoMySQL.cs" />
+    <Compile Include="Visao\AlteraHorario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\AlteraHorario.Designer.cs">
+      <DependentUpon>AlteraHorario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\AlteraProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\AlteraProfessor.Designer.cs">
+      <DependentUpon>AlteraProfessor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\GerenciaHorarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +83,12 @@
     </Compile>
     <Compile Include="Visao\GerenciaProfessores.Designer.cs">
       <DependentUpon>GerenciaProfessores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\InsereHorario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\InsereHorario.Designer.cs">
+      <DependentUpon>InsereHorario.cs</DependentUpon>
     </Compile>
     <Compile Include="Visao\InsereProfessor.cs">
       <SubType>Form</SubType>
@@ -86,11 +104,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Visao\AlteraHorario.resx">
+      <DependentUpon>AlteraHorario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\AlteraProfessor.resx">
+      <DependentUpon>AlteraProfessor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\GerenciaHorarios.resx">
       <DependentUpon>GerenciaHorarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\GerenciaProfessores.resx">
       <DependentUpon>GerenciaProfessores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\InsereHorario.resx">
+      <DependentUpon>InsereHorario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\InsereProfessor.resx">
       <DependentUpon>InsereProfessor.cs</DependentUpon>

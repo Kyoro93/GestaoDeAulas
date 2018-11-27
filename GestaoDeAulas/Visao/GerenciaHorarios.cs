@@ -37,26 +37,48 @@ namespace GestaoDeAulas.Visao
             dgvHorarios.Rows.Clear();
             foreach (string s in horarios)
             {
-                String strID = s.Split(';')[0];
-                String strHora = s.Split(';')[1];
-                dgvHorarios.Rows.Add(strID, strHora);
+                dgvHorarios.Rows.Add(s);
             }
             conn = null;
         }
 
-        private void btnRemover_Click(object sender, EventArgs e)
+        private void btnRemoverHorario_Click(object sender, EventArgs e)
         {
             int intIndex = dgvHorarios.CurrentCell.RowIndex;
             string strHorario = dgvHorarios.SelectedCells[0].Value.ToString();
-            ConexaoMySQL conn = new ConexaoMySQL();
-            conn.DeleteHorarios(strHorario);
-            conn = null;
-            refreshDataGridView();
-            MessageBox.Show("O horario " + strHorario  + " foi removido com sucesso.");
+            if (MessageBox.Show("Deseja realmente remover o horário \"" + strHorario + "\"?", "Confirme para continuar",
+    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+    MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                ConexaoMySQL conn = new ConexaoMySQL();
+                conn.DeleteHorario(strHorario);
+                conn = null;
+                MessageBox.Show("O horário " + strHorario + " foi removido com sucesso.");
+                refreshDataGridView();
+            }
         }
 
         private void GerenciaHorarios_Enter(object sender, EventArgs e)
         {
+            refreshDataGridView();
+        }
+
+        private void GerenciaHorarios_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdicionarHorario_Click(object sender, EventArgs e)
+        {
+            new InsereHorario().ShowDialog();
+            refreshDataGridView();
+        }
+
+        private void btnAlterarHorario_Click(object sender, EventArgs e)
+        {
+            int intIndex = dgvHorarios.CurrentCell.RowIndex;
+            string strHorario = dgvHorarios.SelectedCells[0].Value.ToString();
+            new AlteraHorario(strHorario).ShowDialog();
             refreshDataGridView();
         }
     }

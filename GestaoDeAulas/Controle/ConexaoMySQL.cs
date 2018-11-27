@@ -321,7 +321,7 @@ namespace GestaoDeAulas.Controle
             }
         }
 
-        public void DeleteProfessores(string nome)
+        public void DeleteProfessor(string nome)
         {
             string query = "DELETE FROM PROFESSOR WHERE NOME LIKE '"+nome+"'";
 
@@ -333,9 +333,34 @@ namespace GestaoDeAulas.Controle
             }
         }
 
-        public bool InsertProfessores(string strNome)
+        public bool InsertProfessor(string strNome)
         {
             string query = "INSERT INTO PROFESSOR (NOME) VALUES('" + strNome + "')";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool UpdateProfessor(string strNovoNome, string strAntigoNome)
+        {
+            string query = "UPDATE PROFESSOR SET NOME = \""+strNovoNome+"\" WHERE NOME LIKE \"" + strAntigoNome + "\"";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -425,7 +450,7 @@ namespace GestaoDeAulas.Controle
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list.Add(dataReader["ID_HORARIO"] + ";" + dataReader["HORARIO"]);
+                    list.Add(dataReader["HORARIO"] + "");
                 }
 
                 //close Data Reader
@@ -443,9 +468,59 @@ namespace GestaoDeAulas.Controle
             }
         }
 
-        public void DeleteHorarios(string horario)
+        public bool InsertHorario(string strHorario)
         {
-            string query = "DELETE FROM HORARIO_AULA WHERE ID_HORARIO = " + horario + "";
+            string query = "INSERT INTO HORARIO_AULA (HORARIO) VALUES('" + strHorario + "')";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool UpdateHorario(string strNovoHorario, string strAntigoHorario)
+        {
+            string query = "UPDATE HORARIO_AULA SET HORARIO = \"" + strNovoHorario + "\" WHERE HORARIO LIKE \"" + strAntigoHorario + "\"";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void DeleteHorario(string horario)
+        {
+            string query = "DELETE FROM HORARIO_AULA WHERE HORARIO = \"" + horario + "\"";
 
             if (this.OpenConnection() == true)
             {

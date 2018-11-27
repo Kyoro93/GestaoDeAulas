@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace GestaoDeAulas.Visao
 {
-    public partial class InsereProfessor : Form
+    public partial class InsereHorario : Form
     {
-        public InsereProfessor()
+        public InsereHorario()
         {
             InitializeComponent();
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            string strNome = txbNome.Text;
+            string strHorario = txbHorario.Text;
             try
             {
                 ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.InsertProfessor(strNome);
+                bool result = conn.InsertHorario(strHorario);
 
                 if (!result)
                 {
@@ -35,15 +35,11 @@ namespace GestaoDeAulas.Visao
                     MessageBox.Show("Inserido com sucesso.");
                     this.Close();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
-        }
-
-        private void InsereProfessor_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
