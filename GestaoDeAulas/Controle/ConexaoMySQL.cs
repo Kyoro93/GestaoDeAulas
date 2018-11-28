@@ -529,5 +529,109 @@ namespace GestaoDeAulas.Controle
                 this.CloseConnection();
             }
         }
+
+        /// <summary>
+        /// TURMAS
+        /// </summary>
+        /// <param name="turmas"></param>
+        /// 
+
+        public List<string> SelectTurmas()
+        {
+            string query = "SELECT * FROM TURMA";
+
+            //Create a list to store the result
+            List<string> list = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list.Add(dataReader["NOME"] + ";" + dataReader["BLOCO"]);
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public bool InsertTurma(string strTurma, string strBloco)
+        {
+            string query = "INSERT INTO TURMA (NOME, BLOCO) VALUES('" + strTurma + "', '" + strBloco + "')";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool UpdateTurma(string strNovaTurma, string strAntigaTurma, string strNovoBloco, string strAntigoBloco)
+        {
+            string query = "UPDATE TURMA SET NOME = \"" + strNovaTurma + "\", BLOCO = \"" + strNovoBloco + "\" WHERE NOME LIKE \"" + strAntigaTurma + "\" AND BLOCO LIKE \"" + strAntigoBloco + "\"";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void DeleteTurma(string strTurma, string strBloco)
+        {
+            string query = "DELETE FROM TURMA WHERE NOME LIKE \"" + strTurma + "\" AND BLOCO LIKE \"" + strBloco + "\"";
+
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
+            }
+        }
     }
 }

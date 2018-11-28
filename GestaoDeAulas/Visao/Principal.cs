@@ -67,10 +67,10 @@ namespace GestaoDeAulas
             _gerenciaHorarios1.ShowDialog();
         }
 
-        //private void turmasToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    GerenciaTurmas _gerenciaTurmas1 = GerenciaTurmas.Instance;
-        //    _gerenciaTurmas1.ShowDialog();
-        //}
+        private void turmasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GerenciaTurmas _gerenciaTurmas1 = GerenciaTurmas.Instance;
+            _gerenciaTurmas1.ShowDialog();
+        }
     }
 }
