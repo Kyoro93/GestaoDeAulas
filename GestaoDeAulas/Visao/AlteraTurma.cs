@@ -11,24 +11,29 @@ using System.Windows.Forms;
 
 namespace GestaoDeAulas.Visao
 {
-    public partial class AlteraHorario : Form
+    public partial class AlteraTurma : Form
     {
-        string strAntigoHorario = "";
+        string strAntigaTurma = "";
+        string strAntigoBloco = "";
 
-        public AlteraHorario(string strAntigoHorario)
+        public AlteraTurma(string strAntigaTurma, string strAntigoBloco)
         {
-            this.strAntigoHorario = strAntigoHorario;
             InitializeComponent();
+            this.strAntigaTurma = strAntigaTurma;
+            this.strAntigoBloco = strAntigoBloco;
+            txbNovaTurma.Text = strAntigaTurma;
+            txbNovoBloco.Text = strAntigoBloco;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            string strNovoHorario = txbNovoHorario.Text;
+            string strNovaTurma = txbNovaTurma.Text;
+            string strNovoBloco = txbNovoBloco.Text;
 
             try
             {
                 ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.UpdateHorario(strNovoHorario, this.strAntigoHorario);
+                bool result = conn.UpdateTurma(strNovaTurma, this.strAntigaTurma, strNovoBloco, this.strAntigoBloco);
 
                 if (!result)
                 {
@@ -46,7 +51,12 @@ namespace GestaoDeAulas.Visao
             }
         }
 
-        private void AlteraHorario_Load(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AlteraTurma_Load(object sender, EventArgs e)
         {
 
         }

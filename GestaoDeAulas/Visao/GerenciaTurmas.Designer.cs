@@ -33,8 +33,9 @@
             this.btnAlterarHorario = new System.Windows.Forms.Button();
             this.btnRemoverHorario = new System.Windows.Forms.Button();
             this.btnAdicionarHorario = new System.Windows.Forms.Button();
-            this.TURMA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_TURMA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BLOCO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TURMA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurmas)).BeginInit();
             this.SuspendLayout();
@@ -53,8 +54,9 @@
             this.dgvTurmas.AllowUserToDeleteRows = false;
             this.dgvTurmas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTurmas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TURMA,
-            this.BLOCO});
+            this.ID_TURMA,
+            this.BLOCO,
+            this.TURMA});
             this.dgvTurmas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTurmas.Location = new System.Drawing.Point(0, 0);
             this.dgvTurmas.Name = "dgvTurmas";
@@ -92,17 +94,23 @@
             this.btnAdicionarHorario.UseVisualStyleBackColor = true;
             this.btnAdicionarHorario.Click += new System.EventHandler(this.btnAdicionarHorario_Click);
             // 
-            // TURMA
+            // ID_TURMA
             // 
-            this.TURMA.HeaderText = "TURMA";
-            this.TURMA.Name = "TURMA";
-            this.TURMA.ReadOnly = true;
+            this.ID_TURMA.HeaderText = "ID_TURMA";
+            this.ID_TURMA.Name = "ID_TURMA";
+            this.ID_TURMA.ReadOnly = true;
             // 
             // BLOCO
             // 
             this.BLOCO.HeaderText = "BLOCO";
             this.BLOCO.Name = "BLOCO";
             this.BLOCO.ReadOnly = true;
+            // 
+            // TURMA
+            // 
+            this.TURMA.HeaderText = "TURMA";
+            this.TURMA.Name = "TURMA";
+            this.TURMA.ReadOnly = true;
             // 
             // GerenciaTurmas
             // 
@@ -114,7 +122,7 @@
             this.Controls.Add(this.btnRemoverHorario);
             this.Controls.Add(this.btnAdicionarHorario);
             this.Name = "GerenciaTurmas";
-            this.Text = "GerenciaTurmas";
+            this.Text = "Gerenciamento de Turmas";
             this.Load += new System.EventHandler(this.GerenciaTurmas_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurmas)).EndInit();
@@ -129,7 +137,8 @@
         private System.Windows.Forms.Button btnAlterarHorario;
         private System.Windows.Forms.Button btnRemoverHorario;
         private System.Windows.Forms.Button btnAdicionarHorario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TURMA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_TURMA;
         private System.Windows.Forms.DataGridViewTextBoxColumn BLOCO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TURMA;
     }
 }

@@ -32,14 +32,15 @@ namespace GestaoDeAulas.Visao
         private void refreshDataGridView()
         {
             ConexaoMySQL conn = new ConexaoMySQL();
-            List<string> turmas = conn.SelectHorarios();
+            List<string> turmas = conn.SelectTurmas();
 
             dgvTurmas.Rows.Clear();
             foreach (string s in turmas)
             {
-                string strTurma = s.Split(';')[0];
-                string strBloco = s.Split(';')[1];
-                dgvTurmas.Rows.Add(strTurma, strBloco);
+                string strIdTurma = s.Split(';')[0];
+                string strTurma = s.Split(';')[1];
+                string strBloco = s.Split(';')[2];
+                dgvTurmas.Rows.Add(strIdTurma, strTurma, strBloco);
             }
             conn = null;
         }
@@ -57,27 +58,38 @@ namespace GestaoDeAulas.Visao
 
         private void btnRemoverHorario_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvTurmas.CurrentCell.RowIndex;
-            string strTurma = dgvTurmas.SelectedCells[0].Value.ToString() + ";" + dgvTurmas.SelectedCells[1].Value.ToString();
-            if (MessageBox.Show("Deseja realmente remover a turma \"" + strTurma + " do bloco " + strTurma.Split(';')[1] + "\"?", "Confirme para continuar",
-    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-    MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            try {
+                string strTurma = dgvTurmas.SelectedCells[1].Value.ToString();
+                string strBloco = dgvTurmas.SelectedCells[2].Value.ToString();
+                if (MessageBox.Show("Deseja realmente remover a turma \"" + strTurma + "/" + strBloco + "\"?", "Confirme para continuar",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+        MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    ConexaoMySQL conn = new ConexaoMySQL();
+                    conn.DeleteTurma(strTurma, strBloco);
+                    conn = null;
+                    MessageBox.Show("A turma " + strTurma + "/" + strBloco + " foi removido com sucesso.");
+                    refreshDataGridView();
+                }
+            }
+            catch (ArgumentOutOfRangeException aoore)
             {
-                ConexaoMySQL conn = new ConexaoMySQL();
-                conn.DeleteTurma(strTurma);
-                conn = null;
-                MessageBox.Show("A turma " + strTurma.Split(';')[0] + " do bloco " + strTurma.Split(';')[1] + " foi removido com sucesso.");
-                refreshDataGridView();
+                MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
             }
         }
 
         private void btnAlterarHorario_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvTurmas.CurrentCell.RowIndex;
-            string strTurma = dgvTurmas.SelectedCells[0].Value.ToString();
-            string strBloco = dgvTurmas.SelectedCells[0].Value.ToString();
-            new AlteraTurma(strTurma, strBloco).ShowDialog();
-            refreshDataGridView();
+            try
+            {
+                string strTurma = dgvTurmas.SelectedCells[1].Value.ToString();
+                string strBloco = dgvTurmas.SelectedCells[2].Value.ToString();
+                new AlteraTurma(strTurma, strBloco).ShowDialog();
+                refreshDataGridView();
+            } catch (ArgumentOutOfRangeException aoore)
+            {
+                MessageBox.Show("Você deve selecionar pelo menos 1 item para alterar");
+            }
         }
     }
 }

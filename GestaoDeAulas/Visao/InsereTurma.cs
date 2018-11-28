@@ -11,32 +11,29 @@ using System.Windows.Forms;
 
 namespace GestaoDeAulas.Visao
 {
-    public partial class AlteraHorario : Form
+    public partial class InsereTurma : Form
     {
-        string strAntigoHorario = "";
-
-        public AlteraHorario(string strAntigoHorario)
+        public InsereTurma()
         {
-            this.strAntigoHorario = strAntigoHorario;
             InitializeComponent();
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void btnInserir_Click(object sender, EventArgs e)
         {
-            string strNovoHorario = txbNovoHorario.Text;
-
+            string strTurma = txbTurma.Text;
+            string strBloco = txbBloco.Text;
             try
             {
                 ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.UpdateHorario(strNovoHorario, this.strAntigoHorario);
+                bool result = conn.InsertTurma(strTurma, strBloco);
 
                 if (!result)
                 {
-                    MessageBox.Show("Erro ao atualizar.");
+                    MessageBox.Show("Erro ao inserir.");
                 }
                 else
                 {
-                    MessageBox.Show("Alterado com sucesso.");
+                    MessageBox.Show("Inserido com sucesso.");
                     this.Close();
                 }
             }
@@ -44,11 +41,6 @@ namespace GestaoDeAulas.Visao
             {
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
-        }
-
-        private void AlteraHorario_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

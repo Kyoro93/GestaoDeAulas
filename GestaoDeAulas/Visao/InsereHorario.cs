@@ -41,5 +41,10 @@ namespace GestaoDeAulas.Visao
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
         }
+
+        private void InsereHorario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

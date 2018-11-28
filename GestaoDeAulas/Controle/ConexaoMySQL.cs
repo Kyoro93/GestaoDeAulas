@@ -391,7 +391,17 @@ namespace GestaoDeAulas.Controle
 
         public List<string> SelectAulas()
         {
-            string query = "SELECT * FROM AULA_AGENDADA";
+            string query = "SELECT " +
+                                    "AULA_AGENDADA.ID_AULA_AGENDADA, " +
+                                    "HORARIO_AULA.HORARIO, " +
+                                    "AULA_AGENDADA.PROFESSOR, " +
+                                    "TURMA.NOME, " +
+                                    "TURMA.BLOCO, " +
+                                    "AULA_AGENDADA.CONTEUDO " +
+                            "FROM " +
+                                    "`AULA_AGENDADA` " +
+                                    "JOIN HORARIO_AULA ON HORARIO_AULA.ID_HORARIO = AULA_AGENDADA.ID_HORARIO " +
+                                    "JOIN TURMA ON TURMA.ID_TURMA = AULA_AGENDADA.ID_TURMA ";
 
             //Create a list to store the result
             List<string> list = new List<string>();
@@ -408,7 +418,12 @@ namespace GestaoDeAulas.Controle
                 while (dataReader.Read())
                 {
                     // TODO: Arrumar as colunas para retornar tudo da aula
-                    list.Add(dataReader["NOME"] + "");
+                    list.Add(dataReader["ID_AULA_AGENDADA"] + ";" +
+                        dataReader["HORARIO"] + ";" +
+                        dataReader["PROFESSOR"] + ";" +
+                        dataReader["NOME"] + ";" +
+                        dataReader["BLOCO"] + ";" +
+                        dataReader["CONTEUDO"]);
                 }
 
                 //close Data Reader
@@ -423,6 +438,101 @@ namespace GestaoDeAulas.Controle
             else
             {
                 return list;
+            }
+        }
+
+        public List<string> SelectAulas(string strParametro)
+        {
+            string query = "SELECT " +
+                                    "AULA_AGENDADA.ID_AULA_AGENDADA, " +
+                                    "HORARIO_AULA.HORARIO, " +
+                                    "AULA_AGENDADA.PROFESSOR, " +
+                                    "TURMA.NOME, " +
+                                    "TURMA.BLOCO, " +
+                                    "AULA_AGENDADA.CONTEUDO " +
+                            "FROM " +
+                                    "AULA_AGENDADA " +
+                                    "JOIN HORARIO_AULA ON HORARIO_AULA.ID_HORARIO = AULA_AGENDADA.ID_HORARIO " +
+                                    "JOIN TURMA ON TURMA.ID_TURMA = AULA_AGENDADA.ID_TURMA " +
+                            "WHERE " +
+                                    "HORARIO_AULA.HORARIO LIKE '%" + strParametro + "%' OR " +
+                                    "AULA_AGENDADA.PROFESSOR LIKE '%" + strParametro + "%' OR " +
+                                    "TURMA.NOME LIKE '%" + strParametro + "%' OR " +
+                                    "TURMA.BLOCO LIKE '%" + strParametro + "%' OR "  +
+                                    "AULA_AGENDADA.CONTEUDO LIKE '%" + strParametro + "%' ";
+
+            //Create a list to store the result
+            List<string> list = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    // TODO: Arrumar as colunas para retornar tudo da aula
+                    list.Add(dataReader["ID_AULA_AGENDADA"] + ";" +
+                        dataReader["HORARIO"] + ";" +
+                        dataReader["PROFESSOR"] + ";" +
+                        dataReader["NOME"] + ";" +
+                        dataReader["BLOCO"] + ";" +
+                        dataReader["CONTEUDO"]);
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public bool InsertAula(string strHorario, string strProfessor, string strTurma, string strBloco, string strConteudo)
+        {
+            string query = "INSERT INTO `AULA_AGENDADA` (`ID_HORARIO`, `PROFESSOR`, `ID_TURMA`, `CONTEUDO`) VALUES ((SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strHorario +"'), '" + strProfessor +"', (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strTurma +"' AND BLOCO LIKE '" + strBloco + "'), '" + strConteudo +"')";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void DeleteAula(string strIDAula)
+        {
+            string query = "DELETE FROM AULA_AGENDADA WHERE ID_AULA_AGENDADA = " + strIDAula + "";
+
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
             }
         }
 
@@ -450,7 +560,7 @@ namespace GestaoDeAulas.Controle
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list.Add(dataReader["HORARIO"] + "");
+                    list.Add(dataReader["ID_HORARIO"] + ";" + dataReader["HORARIO"]);
                 }
 
                 //close Data Reader
@@ -554,7 +664,7 @@ namespace GestaoDeAulas.Controle
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list.Add(dataReader["NOME"] + ";" + dataReader["BLOCO"]);
+                    list.Add(dataReader["ID_TURMA"] + ";" + dataReader["NOME"] + ";" + dataReader["BLOCO"]);
                 }
 
                 //close Data Reader

@@ -32,8 +32,9 @@
             this.btnRemoverHorario = new System.Windows.Forms.Button();
             this.btnAdicionarHorario = new System.Windows.Forms.Button();
             this.dgvHorarios = new System.Windows.Forms.DataGridView();
-            this.HORA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HORA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarios)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +75,7 @@
             this.dgvHorarios.AllowUserToDeleteRows = false;
             this.dgvHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.HORA});
             this.dgvHorarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHorarios.Location = new System.Drawing.Point(0, 0);
@@ -81,12 +83,6 @@
             this.dgvHorarios.ReadOnly = true;
             this.dgvHorarios.Size = new System.Drawing.Size(497, 340);
             this.dgvHorarios.TabIndex = 8;
-            // 
-            // HORA
-            // 
-            this.HORA.HeaderText = "HORA";
-            this.HORA.Name = "HORA";
-            this.HORA.ReadOnly = true;
             // 
             // panel2
             // 
@@ -96,6 +92,18 @@
             this.panel2.Size = new System.Drawing.Size(497, 340);
             this.panel2.TabIndex = 9;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID_HORARIO";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // HORA
+            // 
+            this.HORA.HeaderText = "HORA";
+            this.HORA.Name = "HORA";
+            this.HORA.ReadOnly = true;
+            // 
             // GerenciaHorarios
             // 
             this.ClientSize = new System.Drawing.Size(521, 454);
@@ -104,6 +112,7 @@
             this.Controls.Add(this.btnRemoverHorario);
             this.Controls.Add(this.btnAdicionarHorario);
             this.Name = "GerenciaHorarios";
+            this.Text = "Gerenciamento de Horários";
             this.Load += new System.EventHandler(this.GerenciaHorarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarios)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -121,6 +130,7 @@
         private System.Windows.Forms.Button btnAdicionarHorario;
         private System.Windows.Forms.DataGridView dgvHorarios;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn HORA;
     }
 }

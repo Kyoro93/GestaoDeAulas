@@ -37,26 +37,31 @@ namespace GestaoDeAulas.Visao
             dgvHorarios.Rows.Clear();
             foreach (string s in horarios)
             {
-                dgvHorarios.Rows.Add(s);
+                dgvHorarios.Rows.Add(s.Split(';')[0], s.Split(';')[1]);
             }
             conn = null;
         }
 
         private void btnRemoverHorario_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvHorarios.CurrentCell.RowIndex;
-            string strHorario = dgvHorarios.SelectedCells[0].Value.ToString();
-            if (MessageBox.Show("Deseja realmente remover o horário \"" + strHorario + "\"?", "Confirme para continuar",
-    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-    MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
-            {
-                ConexaoMySQL conn = new ConexaoMySQL();
-                conn.DeleteHorario(strHorario);
-                conn = null;
-                MessageBox.Show("O horário " + strHorario + " foi removido com sucesso.");
-                refreshDataGridView();
+            try {
+                string strHorario = dgvHorarios.SelectedCells[1].Value.ToString();
+                if (MessageBox.Show("Deseja realmente remover o horário \"" + strHorario + "\"?", "Confirme para continuar",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+        MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    ConexaoMySQL conn = new ConexaoMySQL();
+                    conn.DeleteHorario(strHorario);
+                    conn = null;
+                    MessageBox.Show("O horário " + strHorario + " foi removido com sucesso.");
+                    refreshDataGridView();
+                }
             }
-        }
+                catch (ArgumentOutOfRangeException aoore)
+                {
+                    MessageBox.Show("Você deve selecionar pelo menos 1 item para alterar");
+                }
+}
 
         private void GerenciaHorarios_Enter(object sender, EventArgs e)
         {
@@ -76,10 +81,15 @@ namespace GestaoDeAulas.Visao
 
         private void btnAlterarHorario_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvHorarios.CurrentCell.RowIndex;
-            string strHorario = dgvHorarios.SelectedCells[0].Value.ToString();
-            new AlteraHorario(strHorario).ShowDialog();
-            refreshDataGridView();
-        }
+            try {
+                string strHorario = dgvHorarios.SelectedCells[1].Value.ToString();
+                new AlteraHorario(strHorario).ShowDialog();
+                refreshDataGridView();
+            }
+                catch (ArgumentOutOfRangeException aoore)
+                {
+                    MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
+                }
+}
     }
 }

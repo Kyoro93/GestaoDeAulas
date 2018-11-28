@@ -48,19 +48,24 @@ namespace GestaoDeAulas.Visao
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvProfessores.CurrentCell.RowIndex;
-            string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
-            if (MessageBox.Show("Deseja realmente remover o professor \""+ strProfessor +"\"?", "Confirme para continuar",
-    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-    MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
-            {
-                ConexaoMySQL conn = new ConexaoMySQL();
-                conn.DeleteProfessor(strProfessor);
-                conn = null;
-                MessageBox.Show("O professor " + strProfessor + " foi removido com sucesso.");
-                refreshDataGridView();
+            try {
+                string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
+                if (MessageBox.Show("Deseja realmente remover o professor \""+ strProfessor +"\"?", "Confirme para continuar",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+        MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    ConexaoMySQL conn = new ConexaoMySQL();
+                    conn.DeleteProfessor(strProfessor);
+                    conn = null;
+                    MessageBox.Show("O professor " + strProfessor + " foi removido com sucesso.");
+                    refreshDataGridView();
+                }
             }
-        }
+            catch (ArgumentOutOfRangeException aoore)
+            {
+                MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
+            }
+}
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
@@ -75,10 +80,15 @@ namespace GestaoDeAulas.Visao
 
         private void btnAlterarProfessor_Click(object sender, EventArgs e)
         {
-            int intIndex = dgvProfessores.CurrentCell.RowIndex;
-            string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
-            new AlteraProfessor(strProfessor).ShowDialog();
-            refreshDataGridView();
-        }
+            try {
+                string strProfessor = dgvProfessores.SelectedCells[0].Value.ToString();
+                new AlteraProfessor(strProfessor).ShowDialog();
+                refreshDataGridView();
+            }
+            catch (ArgumentOutOfRangeException aoore)
+            {
+                MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
+            }
+}
     }
 }

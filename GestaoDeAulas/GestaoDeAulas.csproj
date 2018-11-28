@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controle\ConexaoMySQL.cs" />
+    <Compile Include="Visao\AlteraAula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\AlteraAula.Designer.cs">
+      <DependentUpon>AlteraAula.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\AlteraHorario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,12 @@
     </Compile>
     <Compile Include="Visao\AlteraProfessor.Designer.cs">
       <DependentUpon>AlteraProfessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\AlteraTurma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\AlteraTurma.Designer.cs">
+      <DependentUpon>AlteraTurma.cs</DependentUpon>
     </Compile>
     <Compile Include="Visao\GerenciaHorarios.cs">
       <SubType>Form</SubType>
@@ -90,6 +102,12 @@
     <Compile Include="Visao\GerenciaTurmas.Designer.cs">
       <DependentUpon>GerenciaTurmas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\InsereAula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\InsereAula.Designer.cs">
+      <DependentUpon>InsereAula.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\InsereHorario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +120,12 @@
     <Compile Include="Visao\InsereProfessor.Designer.cs">
       <DependentUpon>InsereProfessor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\InsereTurma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\InsereTurma.Designer.cs">
+      <DependentUpon>InsereTurma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,11 +134,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Visao\AlteraAula.resx">
+      <DependentUpon>AlteraAula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\AlteraHorario.resx">
       <DependentUpon>AlteraHorario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\AlteraProfessor.resx">
       <DependentUpon>AlteraProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\AlteraTurma.resx">
+      <DependentUpon>AlteraTurma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\GerenciaHorarios.resx">
       <DependentUpon>GerenciaHorarios.cs</DependentUpon>
@@ -125,11 +155,17 @@
     <EmbeddedResource Include="Visao\GerenciaTurmas.resx">
       <DependentUpon>GerenciaTurmas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visao\InsereAula.resx">
+      <DependentUpon>InsereAula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\InsereHorario.resx">
       <DependentUpon>InsereHorario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\InsereProfessor.resx">
       <DependentUpon>InsereProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\InsereTurma.resx">
+      <DependentUpon>InsereTurma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

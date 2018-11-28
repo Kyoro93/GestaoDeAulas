@@ -34,11 +34,20 @@
             this.horáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turmasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.btnInserir = new System.Windows.Forms.Button();
+            this.txbPesquisa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelAulas = new System.Windows.Forms.Panel();
             this.dgvAulasAgendadas = new System.Windows.Forms.DataGridView();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.ID_AULA_AGENDADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HORARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PROFESSOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TURMA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BLOCO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTEUDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelAulas.SuspendLayout();
@@ -83,7 +92,7 @@
             // turmasToolStripMenuItem
             // 
             this.turmasToolStripMenuItem.Name = "turmasToolStripMenuItem";
-            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.turmasToolStripMenuItem.Text = "Turmas";
             this.turmasToolStripMenuItem.Click += new System.EventHandler(this.turmasToolStripMenuItem_Click);
             // 
@@ -92,7 +101,10 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.btnExcluir);
+            this.panel1.Controls.Add(this.btnAlterar);
+            this.panel1.Controls.Add(this.btnInserir);
+            this.panel1.Controls.Add(this.txbPesquisa);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panelAulas);
             this.panel1.Controls.Add(this.monthCalendar1);
@@ -101,13 +113,44 @@
             this.panel1.Size = new System.Drawing.Size(775, 660);
             this.panel1.TabIndex = 1;
             // 
-            // textBox1
+            // btnExcluir
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(104, 246);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(646, 26);
-            this.textBox1.TabIndex = 4;
+            this.btnExcluir.Location = new System.Drawing.Point(551, 193);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 7;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(310, 193);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 6;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            // 
+            // btnInserir
+            // 
+            this.btnInserir.Location = new System.Drawing.Point(94, 193);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(75, 23);
+            this.btnInserir.TabIndex = 5;
+            this.btnInserir.Text = "Inserir";
+            this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            // 
+            // txbPesquisa
+            // 
+            this.txbPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPesquisa.Location = new System.Drawing.Point(104, 246);
+            this.txbPesquisa.Name = "txbPesquisa";
+            this.txbPesquisa.Size = new System.Drawing.Size(646, 26);
+            this.txbPesquisa.TabIndex = 4;
+            this.txbPesquisa.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -135,6 +178,13 @@
             this.dgvAulasAgendadas.AllowUserToAddRows = false;
             this.dgvAulasAgendadas.AllowUserToDeleteRows = false;
             this.dgvAulasAgendadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAulasAgendadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_AULA_AGENDADA,
+            this.HORARIO,
+            this.PROFESSOR,
+            this.TURMA,
+            this.BLOCO,
+            this.CONTEUDO});
             this.dgvAulasAgendadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAulasAgendadas.Location = new System.Drawing.Point(0, 0);
             this.dgvAulasAgendadas.Name = "dgvAulasAgendadas";
@@ -142,6 +192,7 @@
             this.dgvAulasAgendadas.Size = new System.Drawing.Size(769, 379);
             this.dgvAulasAgendadas.TabIndex = 1;
             this.dgvAulasAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dgvAulasAgendadas.DoubleClick += new System.EventHandler(this.dgvAulasAgendadas_DoubleClick);
             // 
             // monthCalendar1
             // 
@@ -150,6 +201,42 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            // 
+            // ID_AULA_AGENDADA
+            // 
+            this.ID_AULA_AGENDADA.HeaderText = "ID_AULA_AGENDADA";
+            this.ID_AULA_AGENDADA.Name = "ID_AULA_AGENDADA";
+            this.ID_AULA_AGENDADA.ReadOnly = true;
+            // 
+            // HORARIO
+            // 
+            this.HORARIO.HeaderText = "HORARIO";
+            this.HORARIO.Name = "HORARIO";
+            this.HORARIO.ReadOnly = true;
+            // 
+            // PROFESSOR
+            // 
+            this.PROFESSOR.HeaderText = "PROFESSOR";
+            this.PROFESSOR.Name = "PROFESSOR";
+            this.PROFESSOR.ReadOnly = true;
+            // 
+            // TURMA
+            // 
+            this.TURMA.HeaderText = "TURMA";
+            this.TURMA.Name = "TURMA";
+            this.TURMA.ReadOnly = true;
+            // 
+            // BLOCO
+            // 
+            this.BLOCO.HeaderText = "BLOCO";
+            this.BLOCO.Name = "BLOCO";
+            this.BLOCO.ReadOnly = true;
+            // 
+            // CONTEUDO
+            // 
+            this.CONTEUDO.HeaderText = "CONTEUDO";
+            this.CONTEUDO.Name = "CONTEUDO";
+            this.CONTEUDO.ReadOnly = true;
             // 
             // Principal
             // 
@@ -162,6 +249,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
             this.Text = "Sistema de Gestão de Aulas - Educativa";
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -184,8 +272,17 @@
         private System.Windows.Forms.Panel panelAulas;
         private System.Windows.Forms.DataGridView dgvAulasAgendadas;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbPesquisa;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_AULA_AGENDADA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HORARIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PROFESSOR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TURMA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BLOCO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTEUDO;
     }
 }
 
