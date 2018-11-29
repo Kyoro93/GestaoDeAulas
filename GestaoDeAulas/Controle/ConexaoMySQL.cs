@@ -524,6 +524,31 @@ namespace GestaoDeAulas.Controle
             return false;
         }
 
+        public bool UpdateAula(string strNovoHorario, string strNovoProfessor, string strNovaTurma, string strNovoBloco, string strNovoConteudo, int intIDAula)
+        {
+            string query = "UPDATE AULA_AGENDADA SET ID_HORARIO = (SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strNovoHorario + "'), PROFESSOR = '" + strNovoProfessor + "', ID_TURMA = (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strNovaTurma + "' AND BLOCO LIKE '" + strNovoBloco + "'), CONTEUDO = '" + strNovoConteudo + "' WHERE ID_AULA_AGENDADA = " + intIDAula;
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                int result = cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void DeleteAula(string strIDAula)
         {
             string query = "DELETE FROM AULA_AGENDADA WHERE ID_AULA_AGENDADA = " + strIDAula + "";

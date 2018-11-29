@@ -58,6 +58,7 @@
             this.btnAlterar.TabIndex = 18;
             this.btnAlterar.Text = "Salvar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // rtbConteudo
             // 

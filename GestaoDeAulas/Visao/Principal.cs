@@ -124,13 +124,13 @@ namespace GestaoDeAulas
         {
             try
             {
-                string strIDAula = dgvAulasAgendadas.SelectedCells[0].Value.ToString();
+                int intIDAula = Convert.ToInt32(dgvAulasAgendadas.SelectedCells[0].Value);
                 string strHorario = dgvAulasAgendadas.SelectedCells[1].Value.ToString();
                 string strProfessor = dgvAulasAgendadas.SelectedCells[2].Value.ToString();
                 string strTurma = dgvAulasAgendadas.SelectedCells[3].Value.ToString();
                 string strBloco = dgvAulasAgendadas.SelectedCells[4].Value.ToString();
                 string strConteudo = dgvAulasAgendadas.SelectedCells[5].Value.ToString();
-                new AlteraAula(strIDAula, strHorario, strTurma, strBloco, strProfessor, strConteudo).ShowDialog();
+                new AlteraAula(intIDAula, strHorario, strTurma, strBloco, strProfessor, strConteudo).ShowDialog();
                 refreshDataGridView();
             }
             catch (ArgumentOutOfRangeException aoore)
