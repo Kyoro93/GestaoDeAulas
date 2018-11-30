@@ -38,6 +38,8 @@
             this.rtbConteudo = new System.Windows.Forms.RichTextBox();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.mtcCalendario = new System.Windows.Forms.MonthCalendar();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 125);
+            this.label4.Location = new System.Drawing.Point(12, 172);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 3;
@@ -102,7 +104,7 @@
             // 
             // rtbConteudo
             // 
-            this.rtbConteudo.Location = new System.Drawing.Point(15, 141);
+            this.rtbConteudo.Location = new System.Drawing.Point(15, 188);
             this.rtbConteudo.Name = "rtbConteudo";
             this.rtbConteudo.Size = new System.Drawing.Size(581, 287);
             this.rtbConteudo.TabIndex = 7;
@@ -110,7 +112,7 @@
             // 
             // btnInserir
             // 
-            this.btnInserir.Location = new System.Drawing.Point(361, 23);
+            this.btnInserir.Location = new System.Drawing.Point(499, 32);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
             this.btnInserir.TabIndex = 8;
@@ -120,7 +122,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(361, 77);
+            this.btnCancelar.Location = new System.Drawing.Point(499, 86);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 9;
@@ -128,11 +130,29 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(203, 137);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Data:";
+            // 
+            // mtcCalendario
+            // 
+            this.mtcCalendario.Location = new System.Drawing.Point(260, 14);
+            this.mtcCalendario.MaxSelectionCount = 1;
+            this.mtcCalendario.Name = "mtcCalendario";
+            this.mtcCalendario.TabIndex = 11;
+            // 
             // InsereAula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 440);
+            this.ClientSize = new System.Drawing.Size(608, 487);
+            this.Controls.Add(this.mtcCalendario);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnInserir);
             this.Controls.Add(this.rtbConteudo);
@@ -163,5 +183,7 @@
         private System.Windows.Forms.RichTextBox rtbConteudo;
         private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MonthCalendar mtcCalendario;
     }
 }

@@ -79,10 +79,11 @@ namespace GestaoDeAulas.Visao
                 string strTurma = cbbTurma.Text.Split('/')[0];
                 string strBloco = cbbTurma.Text.Split('/')[1];
                 string strConteudo = rtbConteudo.Text;
+                string strNovaData = mtcCalendario.SelectionStart.ToString("yyyy-MM-dd H:mm:ss");
 
                 ConexaoMySQL conn = new ConexaoMySQL();
                 
-                bool result = conn.InsertAula(strHorario, strProfessor, strTurma, strBloco, strConteudo);
+                bool result = conn.InsertAula(strHorario, strProfessor, strTurma, strBloco, strConteudo, strNovaData);
 
                 if (!result)
                 {

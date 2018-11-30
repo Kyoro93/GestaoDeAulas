@@ -41,13 +41,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelAulas = new System.Windows.Forms.Panel();
             this.dgvAulasAgendadas = new System.Windows.Forms.DataGridView();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.mtcCalendario = new System.Windows.Forms.MonthCalendar();
             this.ID_AULA_AGENDADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HORARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PROFESSOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TURMA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BLOCO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CONTEUDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelAulas.SuspendLayout();
@@ -107,7 +108,7 @@
             this.panel1.Controls.Add(this.txbPesquisa);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panelAulas);
-            this.panel1.Controls.Add(this.monthCalendar1);
+            this.panel1.Controls.Add(this.mtcCalendario);
             this.panel1.Location = new System.Drawing.Point(13, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(775, 660);
@@ -184,7 +185,8 @@
             this.PROFESSOR,
             this.TURMA,
             this.BLOCO,
-            this.CONTEUDO});
+            this.CONTEUDO,
+            this.DATA});
             this.dgvAulasAgendadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAulasAgendadas.Location = new System.Drawing.Point(0, 0);
             this.dgvAulasAgendadas.Name = "dgvAulasAgendadas";
@@ -194,13 +196,15 @@
             this.dgvAulasAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dgvAulasAgendadas.DoubleClick += new System.EventHandler(this.dgvAulasAgendadas_DoubleClick);
             // 
-            // monthCalendar1
+            // mtcCalendario
             // 
-            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 1);
-            this.monthCalendar1.Location = new System.Drawing.Point(43, 9);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            this.mtcCalendario.CalendarDimensions = new System.Drawing.Size(3, 1);
+            this.mtcCalendario.Location = new System.Drawing.Point(43, 9);
+            this.mtcCalendario.MaxSelectionCount = 1;
+            this.mtcCalendario.Name = "mtcCalendario";
+            this.mtcCalendario.TabIndex = 0;
+            this.mtcCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            this.mtcCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // ID_AULA_AGENDADA
             // 
@@ -238,6 +242,12 @@
             this.CONTEUDO.Name = "CONTEUDO";
             this.CONTEUDO.ReadOnly = true;
             // 
+            // DATA
+            // 
+            this.DATA.HeaderText = "DATA";
+            this.DATA.Name = "DATA";
+            this.DATA.ReadOnly = true;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,7 +281,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelAulas;
         private System.Windows.Forms.DataGridView dgvAulasAgendadas;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar mtcCalendario;
         private System.Windows.Forms.TextBox txbPesquisa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExcluir;
@@ -283,6 +293,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TURMA;
         private System.Windows.Forms.DataGridViewTextBoxColumn BLOCO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CONTEUDO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATA;
     }
 }
 

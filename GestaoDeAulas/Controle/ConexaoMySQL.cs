@@ -389,7 +389,7 @@ namespace GestaoDeAulas.Controle
         /// <param name="aula"></param>
         /// 
 
-        public List<string> SelectAulas()
+        public List<string> SelectAulas(string strStartDate, string strEndDate)
         {
             string query = "SELECT " +
                                     "AULA_AGENDADA.ID_AULA_AGENDADA, " +
@@ -397,11 +397,16 @@ namespace GestaoDeAulas.Controle
                                     "AULA_AGENDADA.PROFESSOR, " +
                                     "TURMA.NOME, " +
                                     "TURMA.BLOCO, " +
-                                    "AULA_AGENDADA.CONTEUDO " +
+                                    "AULA_AGENDADA.CONTEUDO, " +
+                                    "AULA_AGENDADA.DATA " +
                             "FROM " +
                                     "`AULA_AGENDADA` " +
                                     "JOIN HORARIO_AULA ON HORARIO_AULA.ID_HORARIO = AULA_AGENDADA.ID_HORARIO " +
-                                    "JOIN TURMA ON TURMA.ID_TURMA = AULA_AGENDADA.ID_TURMA ";
+                                    "JOIN TURMA ON TURMA.ID_TURMA = AULA_AGENDADA.ID_TURMA " +
+                            "WHERE " +
+                                    "AULA_AGENDADA.DATA BETWEEN '" + strStartDate + "' AND '" + strEndDate + "'" +
+                            "ORDER BY " +
+                                    "AULA_AGENDADA.DATA ASC";
 
             //Create a list to store the result
             List<string> list = new List<string>();
@@ -423,7 +428,8 @@ namespace GestaoDeAulas.Controle
                         dataReader["PROFESSOR"] + ";" +
                         dataReader["NOME"] + ";" +
                         dataReader["BLOCO"] + ";" +
-                        dataReader["CONTEUDO"]);
+                        dataReader["CONTEUDO"] + ";" +
+                        dataReader["DATA"]);
                 }
 
                 //close Data Reader
@@ -441,7 +447,7 @@ namespace GestaoDeAulas.Controle
             }
         }
 
-        public List<string> SelectAulas(string strParametro)
+        public List<string> SelectAulasComParametro(string strParametro)
         {
             string query = "SELECT " +
                                     "AULA_AGENDADA.ID_AULA_AGENDADA, " +
@@ -449,7 +455,8 @@ namespace GestaoDeAulas.Controle
                                     "AULA_AGENDADA.PROFESSOR, " +
                                     "TURMA.NOME, " +
                                     "TURMA.BLOCO, " +
-                                    "AULA_AGENDADA.CONTEUDO " +
+                                    "AULA_AGENDADA.CONTEUDO, " +
+                                    "AULA_AGENDADA.DATA " +
                             "FROM " +
                                     "AULA_AGENDADA " +
                                     "JOIN HORARIO_AULA ON HORARIO_AULA.ID_HORARIO = AULA_AGENDADA.ID_HORARIO " +
@@ -459,7 +466,9 @@ namespace GestaoDeAulas.Controle
                                     "AULA_AGENDADA.PROFESSOR LIKE '%" + strParametro + "%' OR " +
                                     "TURMA.NOME LIKE '%" + strParametro + "%' OR " +
                                     "TURMA.BLOCO LIKE '%" + strParametro + "%' OR "  +
-                                    "AULA_AGENDADA.CONTEUDO LIKE '%" + strParametro + "%' ";
+                                    "AULA_AGENDADA.CONTEUDO LIKE '%" + strParametro + "%'" +
+                            "ORDER BY " +
+                                    "AULA_AGENDADA.DATA ASC";
 
             //Create a list to store the result
             List<string> list = new List<string>();
@@ -481,7 +490,8 @@ namespace GestaoDeAulas.Controle
                         dataReader["PROFESSOR"] + ";" +
                         dataReader["NOME"] + ";" +
                         dataReader["BLOCO"] + ";" +
-                        dataReader["CONTEUDO"]);
+                        dataReader["CONTEUDO"] + ";" +
+                        dataReader["DATA"]);
                 }
 
                 //close Data Reader
@@ -499,9 +509,9 @@ namespace GestaoDeAulas.Controle
             }
         }
 
-        public bool InsertAula(string strHorario, string strProfessor, string strTurma, string strBloco, string strConteudo)
+        public bool InsertAula(string strHorario, string strProfessor, string strTurma, string strBloco, string strConteudo, string strData)
         {
-            string query = "INSERT INTO `AULA_AGENDADA` (`ID_HORARIO`, `PROFESSOR`, `ID_TURMA`, `CONTEUDO`) VALUES ((SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strHorario +"'), '" + strProfessor +"', (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strTurma +"' AND BLOCO LIKE '" + strBloco + "'), '" + strConteudo +"')";
+            string query = "INSERT INTO `AULA_AGENDADA` (`ID_HORARIO`, `PROFESSOR`, `ID_TURMA`, `CONTEUDO`, `DATA`) VALUES ((SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strHorario +"'), '" + strProfessor +"', (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strTurma +"' AND BLOCO LIKE '" + strBloco + "'), '" + strConteudo +"','" + strData + "')";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -524,9 +534,9 @@ namespace GestaoDeAulas.Controle
             return false;
         }
 
-        public bool UpdateAula(string strNovoHorario, string strNovoProfessor, string strNovaTurma, string strNovoBloco, string strNovoConteudo, int intIDAula)
+        public bool UpdateAula(string strNovoHorario, string strNovoProfessor, string strNovaTurma, string strNovoBloco, string strNovoConteudo, string strData, int intIDAula)
         {
-            string query = "UPDATE AULA_AGENDADA SET ID_HORARIO = (SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strNovoHorario + "'), PROFESSOR = '" + strNovoProfessor + "', ID_TURMA = (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strNovaTurma + "' AND BLOCO LIKE '" + strNovoBloco + "'), CONTEUDO = '" + strNovoConteudo + "' WHERE ID_AULA_AGENDADA = " + intIDAula;
+            string query = "UPDATE AULA_AGENDADA SET ID_HORARIO = (SELECT ID_HORARIO FROM HORARIO_AULA WHERE HORARIO LIKE '" + strNovoHorario + "'), PROFESSOR = '" + strNovoProfessor + "', ID_TURMA = (SELECT ID_TURMA FROM TURMA WHERE NOME LIKE '" + strNovaTurma + "' AND BLOCO LIKE '" + strNovoBloco + "'), CONTEUDO = '" + strNovoConteudo + "', DATA = '" + strData + "' WHERE ID_AULA_AGENDADA = " + intIDAula;
 
             //open connection
             if (this.OpenConnection() == true)

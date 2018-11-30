@@ -19,8 +19,9 @@ namespace GestaoDeAulas.Visao
         string strAntigoBloco = "";
         string strAntigoProfessor = "";
         string strAntigoConteudo = "";
+        string strAntigaData = "";
 
-        public AlteraAula(int intIDAula, string strAntigoHorario, string strAntigaTurma, string strAntigoBloco, string strAntigoProfessor, string strAntigoConteudo)
+        public AlteraAula(int intIDAula, string strAntigoHorario, string strAntigaTurma, string strAntigoBloco, string strAntigoProfessor, string strAntigoConteudo, string strAntigaData)
         {
             InitializeComponent();
             this.intIDAula = intIDAula;
@@ -29,6 +30,7 @@ namespace GestaoDeAulas.Visao
             this.strAntigoBloco = strAntigoBloco;
             this.strAntigoProfessor = strAntigoProfessor;
             this.strAntigoConteudo = strAntigoConteudo;
+            this.strAntigaData = strAntigaData;
             refreshComboBox();
         }
 
@@ -60,6 +62,7 @@ namespace GestaoDeAulas.Visao
                 cbbProfessor.SelectedItem = this.strAntigoProfessor;
                 cbbTurma.SelectedItem = this.strAntigaTurma+"/"+this.strAntigoBloco;
                 rtbConteudo.Text = this.strAntigoConteudo;
+                mtcCalendario.SetSelectionRange(Convert.ToDateTime(strAntigaData.ToString()), Convert.ToDateTime(strAntigaData.ToString()));
             }
             catch (Exception ex)
             {
@@ -79,11 +82,12 @@ namespace GestaoDeAulas.Visao
             string strNovaTurma = cbbTurma.Text.Split('/')[0];
             string strNovoBloco = cbbTurma.Text.Split('/')[1];
             string strNovoConteudo = rtbConteudo.Text;
+            string strNovaData = mtcCalendario.SelectionStart.ToString("yyyy-MM-dd H:mm:ss");
 
             try
             {
                 ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.UpdateAula(strNovoHorario, strNovoProfessor, strNovaTurma, strNovoBloco, strNovoConteudo, this.intIDAula);
+                bool result = conn.UpdateAula(strNovoHorario, strNovoProfessor, strNovaTurma, strNovoBloco, strNovoConteudo, strNovaData, this.intIDAula);
 
                 if (!result)
                 {
@@ -99,6 +103,11 @@ namespace GestaoDeAulas.Visao
             {
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
+        }
+
+        private void AlteraAula_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

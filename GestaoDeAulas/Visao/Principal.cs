@@ -34,8 +34,14 @@ namespace GestaoDeAulas
 
         private void refreshDataGridView()
         {
+            string strStartDate;
+            string strEndDate;
+
+            strStartDate = mtcCalendario.SelectionRange.Start.ToString("yyyy-MM-dd H:mm:ss");
+            strEndDate = mtcCalendario.SelectionRange.Start.AddDays(1).AddMilliseconds(-1).ToString("yyyy-MM-dd H:mm:ss");
+
             ConexaoMySQL conn = new ConexaoMySQL();
-            List<string> aulas = conn.SelectAulas();
+            List<string> aulas = conn.SelectAulas(strStartDate, strEndDate);
 
             dgvAulasAgendadas.Rows.Clear();
             foreach (string s in aulas)
@@ -46,7 +52,8 @@ namespace GestaoDeAulas
                 string strTurma = s.Split(';')[3];
                 string strBloco = s.Split(';')[4];
                 string strConteudo = s.Split(';')[5];
-                dgvAulasAgendadas.Rows.Add(strIdAulaAgendada, strHorario, strProfessor, strTurma, strBloco, strConteudo);
+                string strData = s.Split(';')[6];
+                dgvAulasAgendadas.Rows.Add(strIdAulaAgendada, strHorario, strProfessor, strTurma, strBloco, strConteudo, strData);
             }
             conn = null;
         }
@@ -54,7 +61,7 @@ namespace GestaoDeAulas
         private void refreshDataGridViewWithSearch(string strParametro)
         {
             ConexaoMySQL conn = new ConexaoMySQL();
-            List<string> aulas = conn.SelectAulas(strParametro);
+            List<string> aulas = conn.SelectAulasComParametro(strParametro);
 
             dgvAulasAgendadas.Rows.Clear();
             foreach (string s in aulas)
@@ -65,14 +72,15 @@ namespace GestaoDeAulas
                 string strTurma = s.Split(';')[3];
                 string strBloco = s.Split(';')[4];
                 string strConteudo = s.Split(';')[5];
-                dgvAulasAgendadas.Rows.Add(strIdAulaAgendada, strHorario, strProfessor, strTurma, strBloco, strConteudo);
+                string strData = s.Split(';')[6];
+                dgvAulasAgendadas.Rows.Add(strIdAulaAgendada, strHorario, strProfessor, strTurma, strBloco, strConteudo, strData);
             }
             conn = null;
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-        
+            refreshDataGridView();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -101,7 +109,13 @@ namespace GestaoDeAulas
 
         private void dgvAulasAgendadas_DoubleClick(object sender, EventArgs e)
         {
-            string strTurma = dgvAulasAgendadas.Rows[0].Cells[0].Value.ToString();
+            try
+            {
+                string strTurma = dgvAulasAgendadas.Rows[0].Cells[0].Value.ToString();
+            }catch(Exception ex)
+            {
+
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -112,6 +126,10 @@ namespace GestaoDeAulas
         private void btnInserir_Click(object sender, EventArgs e)
         {
             new InsereAula().ShowDialog();
+            if(mtcCalendario.SelectionStart.ToString("yyyy-MM-dd H:mm:ss") == null)
+            {
+
+            }
             refreshDataGridView();
         }
 
@@ -130,7 +148,8 @@ namespace GestaoDeAulas
                 string strTurma = dgvAulasAgendadas.SelectedCells[3].Value.ToString();
                 string strBloco = dgvAulasAgendadas.SelectedCells[4].Value.ToString();
                 string strConteudo = dgvAulasAgendadas.SelectedCells[5].Value.ToString();
-                new AlteraAula(intIDAula, strHorario, strTurma, strBloco, strProfessor, strConteudo).ShowDialog();
+                string strData = dgvAulasAgendadas.SelectedCells[6].Value.ToString();
+                new AlteraAula(intIDAula, strHorario, strTurma, strBloco, strProfessor, strConteudo, strData).ShowDialog();
                 refreshDataGridView();
             }
             catch (ArgumentOutOfRangeException aoore)
