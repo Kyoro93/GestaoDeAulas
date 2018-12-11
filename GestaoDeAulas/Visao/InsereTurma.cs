@@ -42,5 +42,10 @@ namespace GestaoDeAulas.Visao
                 MessageBox.Show(this.Name + " - Error: " + ex.Message);
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace GestaoDeAulas.Visao
             this.strAntigoBloco = strAntigoBloco;
             this.strAntigoProfessor = strAntigoProfessor;
             this.strAntigoConteudo = strAntigoConteudo;
-            this.strAntigaData = strAntigaData;
+            this.strAntigaData = Convert.ToDateTime(strAntigaData).ToString("yyyy-MM-dd H:mm:ss");
             refreshComboBox();
         }
 
@@ -77,25 +77,38 @@ namespace GestaoDeAulas.Visao
             string strNovoBloco = cbbTurma.Text.Split('/')[1];
             string strNovoConteudo = rtbConteudo.Text;
             string strNovaData = mtcCalendario.SelectionStart.ToString("yyyy-MM-dd H:mm:ss");
-
-            try
+            
+            if (!(strNovoHorario.Equals(strAntigoHorario) &&
+               strNovoProfessor.Equals(strAntigoProfessor) &&
+               strNovaTurma.Equals(strAntigaTurma) &&
+               strNovoBloco.Equals(strAntigoBloco) &&
+               strNovoConteudo.Equals(strAntigoConteudo) &&
+               strNovaData.Equals(strAntigaData)))
             {
-                ConexaoMySQL conn = new ConexaoMySQL();
-                bool result = conn.UpdateAula(strNovoHorario, strNovoProfessor, strNovaTurma, strNovoBloco, strNovoConteudo, strNovaData, this.intIDAula);
 
-                if (!result)
+                try
                 {
-                    MessageBox.Show("Erro ao atualizar.");
+                    ConexaoMySQL conn = new ConexaoMySQL();
+                    bool result = conn.UpdateAula(strNovoHorario, strNovoProfessor, strNovaTurma, strNovoBloco, strNovoConteudo, strNovaData, this.intIDAula);
+
+                    if (!result)
+                    {
+                        MessageBox.Show("Erro ao atualizar.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Alterado com sucesso.");
+                        this.Close();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Alterado com sucesso.");
-                    this.Close();
+                    MessageBox.Show(this.Name + " - Error: " + ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(this.Name + " - Error: " + ex.Message);
+                this.Close();
             }
         }
 

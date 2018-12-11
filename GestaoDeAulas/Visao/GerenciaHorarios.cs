@@ -88,7 +88,7 @@ namespace GestaoDeAulas.Visao
             }
                 catch (ArgumentOutOfRangeException aoore)
                 {
-                    MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
+                    MessageBox.Show("Você deve selecionar pelo menos 1 item para alterar");
                 }
 }
     }
