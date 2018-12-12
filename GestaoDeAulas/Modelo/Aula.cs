@@ -14,8 +14,9 @@ namespace GestaoDeAulas.Modelo
         public string strNome { get; set; }
         public string strBloco { get; set; }
         public string strConteudo { get; set; }
+        public string strData { get; set; }
 
-        public Aula(int intIdAulaAgendada, string strHorario, string strProfessor, string strNome, string strBloco, string strConteudo)
+        public Aula(int intIdAulaAgendada, string strHorario, string strProfessor, string strNome, string strBloco, string strConteudo, string strData)
         {
             this.intIdAulaAgendada = intIdAulaAgendada;
             this.strHorario = strHorario;
@@ -23,6 +24,7 @@ namespace GestaoDeAulas.Modelo
             this.strNome = strNome;
             this.strBloco = strBloco;
             this.strConteudo = strConteudo;
+            this.strData = strData;
         }
     }
 }

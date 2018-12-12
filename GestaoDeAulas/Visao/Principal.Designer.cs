@@ -41,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelAulas = new System.Windows.Forms.Panel();
             this.dgvAulasAgendadas = new System.Windows.Forms.DataGridView();
-            this.mtcCalendario = new System.Windows.Forms.MonthCalendar();
             this.ID_AULA_AGENDADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HORARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PROFESSOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +48,9 @@
             this.BLOCO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CONTEUDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DATA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtcCalendario = new System.Windows.Forms.MonthCalendar();
+            this.rELATÓRIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aULASULT30DIASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelAulas.SuspendLayout();
@@ -58,7 +60,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gerenciamentoToolStripMenuItem});
+            this.gerenciamentoToolStripMenuItem,
+            this.rELATÓRIOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -79,21 +82,21 @@
             // professoresToolStripMenuItem
             // 
             this.professoresToolStripMenuItem.Name = "professoresToolStripMenuItem";
-            this.professoresToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.professoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.professoresToolStripMenuItem.Text = "Professores";
             this.professoresToolStripMenuItem.Click += new System.EventHandler(this.professoresToolStripMenuItem_Click);
             // 
             // horáriosToolStripMenuItem
             // 
             this.horáriosToolStripMenuItem.Name = "horáriosToolStripMenuItem";
-            this.horáriosToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.horáriosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.horáriosToolStripMenuItem.Text = "Horários";
             this.horáriosToolStripMenuItem.Click += new System.EventHandler(this.horáriosToolStripMenuItem_Click);
             // 
             // turmasToolStripMenuItem
             // 
             this.turmasToolStripMenuItem.Name = "turmasToolStripMenuItem";
-            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.turmasToolStripMenuItem.Text = "Turmas";
             this.turmasToolStripMenuItem.Click += new System.EventHandler(this.turmasToolStripMenuItem_Click);
             // 
@@ -196,16 +199,6 @@
             this.dgvAulasAgendadas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dgvAulasAgendadas.DoubleClick += new System.EventHandler(this.dgvAulasAgendadas_DoubleClick);
             // 
-            // mtcCalendario
-            // 
-            this.mtcCalendario.CalendarDimensions = new System.Drawing.Size(3, 1);
-            this.mtcCalendario.Location = new System.Drawing.Point(43, 9);
-            this.mtcCalendario.MaxSelectionCount = 1;
-            this.mtcCalendario.Name = "mtcCalendario";
-            this.mtcCalendario.TabIndex = 0;
-            this.mtcCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
-            this.mtcCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
-            // 
             // ID_AULA_AGENDADA
             // 
             this.ID_AULA_AGENDADA.HeaderText = "ID_AULA_AGENDADA";
@@ -247,6 +240,31 @@
             this.DATA.HeaderText = "DATA";
             this.DATA.Name = "DATA";
             this.DATA.ReadOnly = true;
+            // 
+            // mtcCalendario
+            // 
+            this.mtcCalendario.CalendarDimensions = new System.Drawing.Size(3, 1);
+            this.mtcCalendario.Location = new System.Drawing.Point(43, 9);
+            this.mtcCalendario.MaxSelectionCount = 1;
+            this.mtcCalendario.Name = "mtcCalendario";
+            this.mtcCalendario.TabIndex = 0;
+            this.mtcCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            this.mtcCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            // 
+            // rELATÓRIOSToolStripMenuItem
+            // 
+            this.rELATÓRIOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aULASULT30DIASToolStripMenuItem});
+            this.rELATÓRIOSToolStripMenuItem.Name = "rELATÓRIOSToolStripMenuItem";
+            this.rELATÓRIOSToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.rELATÓRIOSToolStripMenuItem.Text = "RELATÓRIOS";
+            // 
+            // aULASULT30DIASToolStripMenuItem
+            // 
+            this.aULASULT30DIASToolStripMenuItem.Name = "aULASULT30DIASToolStripMenuItem";
+            this.aULASULT30DIASToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aULASULT30DIASToolStripMenuItem.Text = "AULAS ULT 30 DIAS";
+            this.aULASULT30DIASToolStripMenuItem.Click += new System.EventHandler(this.aULASULT30DIASToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -294,6 +312,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BLOCO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CONTEUDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DATA;
+        private System.Windows.Forms.ToolStripMenuItem rELATÓRIOSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aULASULT30DIASToolStripMenuItem;
     }
 }
 

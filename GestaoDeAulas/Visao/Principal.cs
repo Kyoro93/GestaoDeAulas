@@ -37,8 +37,8 @@ namespace GestaoDeAulas
             string strStartDate;
             string strEndDate;
 
-            strStartDate = mtcCalendario.SelectionRange.Start.ToString("yyyy-MM-dd H:mm:ss");
-            strEndDate = mtcCalendario.SelectionRange.Start.AddDays(1).AddMilliseconds(-1).ToString("yyyy-MM-dd H:mm:ss");
+            strStartDate = mtcCalendario.SelectionRange.Start.ToString("yyyy-MM-dd HH:mm:ss");
+            strEndDate = mtcCalendario.SelectionRange.Start.AddDays(1).AddMilliseconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
 
             ConexaoMySQL conn = new ConexaoMySQL();
             List<string> aulas = conn.SelectAulas(strStartDate, strEndDate);
@@ -126,7 +126,7 @@ namespace GestaoDeAulas
         private void btnInserir_Click(object sender, EventArgs e)
         {
             new InsereAula().ShowDialog();
-            if(mtcCalendario.SelectionStart.ToString("yyyy-MM-dd H:mm:ss") == null)
+            if(mtcCalendario.SelectionStart.ToString("yyyy-MM-dd HH:mm:ss") == null)
             {
 
             }
@@ -178,6 +178,11 @@ namespace GestaoDeAulas
             {
                 MessageBox.Show("Você deve selecionar pelo menos 1 item para excluir");
             }
+        }
+
+        private void aULASULT30DIASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Visao.FormRelatorioAulas().ShowDialog();
         }
     }
 }
